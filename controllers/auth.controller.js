@@ -39,7 +39,7 @@ async function signIn(req, res) {
         //issue token
         const payload = { username };
         const token = jwt.sign(payload, authConfig.tokenSecret, {
-          expiresIn: "1h",
+          expiresIn: 60 * authConfig.expirationTime,
         });
         return res
           .cookie("token", token, { httpOnly: true })
