@@ -51,6 +51,14 @@ async function signIn(req, res) {
   }
 }
 
+async function signOut(req, res) {
+  //get jwt token
+  const token = req.cookies.token;
+  console.log(token);
+
+  res.cookie("token", "expiredToken").send("Signed out!").status(200).end();
+}
+
 async function checkIfUsernameExists(req) {
   const usernameExists = await User.exists({ username: req.body.username });
   return usernameExists;
@@ -61,4 +69,4 @@ async function checkIfEmailExists(req) {
   return emailExists;
 }
 
-module.exports = { signUp, signIn };
+module.exports = { signUp, signIn, signOut };
