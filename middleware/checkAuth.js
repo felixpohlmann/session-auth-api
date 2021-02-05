@@ -3,6 +3,7 @@ const authConfig = require("../config/auth.config");
 
 function checkAuth(req, res, next) {
   const token = req.cookies.token;
+  console.log(token);
   if (!token) {
     res.send("Unauthorized: No token provided!").status("401");
   } else {
@@ -10,6 +11,7 @@ function checkAuth(req, res, next) {
       if (err) {
         res.send("Invalid token!");
       } else {
+        console.log(decoded);
         next();
       }
     });

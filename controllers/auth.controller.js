@@ -19,7 +19,7 @@ async function signUp(req, res) {
       res.send("User saved!").status(200).end();
     });
   } else {
-    res.send("User already existing").end();
+    res.send("User already existing").status(404).end();
   }
 }
 
