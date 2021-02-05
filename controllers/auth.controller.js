@@ -52,11 +52,8 @@ async function signIn(req, res) {
 }
 
 async function signOut(req, res) {
-  //get jwt token
-  const token = req.cookies.token;
-  console.log(token);
-
-  res.cookie("token", "expiredToken").send("Signed out!").status(200).end();
+  //override token on client
+  res.cookie("token", "").send("Signed out!").status(200).end();
 }
 
 async function checkIfUsernameExists(req) {
