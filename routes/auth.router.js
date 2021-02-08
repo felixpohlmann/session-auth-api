@@ -1,6 +1,9 @@
 const express = require("express");
 const authController = require("../controllers/auth.controller");
 
+//middleware
+const checkAuth = require("../middleware/checkAuth");
+
 const router = express.Router();
 
 router.post("/signup", (req, res) => {
@@ -13,6 +16,10 @@ router.post("/signin", (req, res) => {
 
 router.get("/signout", (req, res) => {
   authController.signOut(req, res);
+});
+
+router.get("/checkauth", checkAuth, (req, res) => {
+  res.json({ auth: true }).status(200).end();
 });
 
 module.exports = router;
