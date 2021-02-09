@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", checkAuth, (req, res) => {
   const token = req.cookies.token;
   const decoded = jwt.decode(token);
-  console.log(decoded.username);
+  console.log(`User "${decoded.username}" is requesting hidden data`);
   res.send("SECRET CONTENT").status(200).end();
 });
 
