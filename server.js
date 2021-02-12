@@ -14,8 +14,8 @@ app.use(cookieParser());
 const authRouter = require("./routes/auth.router");
 app.use("/api/auth", authRouter);
 
-const postsRouter = require("./routes/posts.router");
-app.use("/api/posts", postsRouter);
+const userRouter = require("./routes/user.router");
+app.use("/api/user", userRouter);
 
 //controllers
 const dbController = require("./controllers/db.controller");
