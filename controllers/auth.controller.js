@@ -35,8 +35,10 @@ async function signIn(req, res) {
       if (!pwdMatch) {
         res.send("Invalid password!").status(401).end();
       } else {
-        //successful login
-
+        //successful login, add user specific data to the session
+        const sessionUser = { userId: user._id, username: user.username };
+        req.session.user = sessionUser;
+        console.log(req.session);
         return res.send("Signed in!").status(200).end();
       }
     });
