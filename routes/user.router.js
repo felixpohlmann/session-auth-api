@@ -1,5 +1,4 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
 
 const Router = express.Router();
 
@@ -7,10 +6,7 @@ const Router = express.Router();
 const checkAuth = require("../middleware/checkAuth");
 
 Router.get("/", checkAuth, (req, res) => {
-  const token = req.cookies.token;
-  const decoded = jwt.decode(token);
-  const { username } = decoded;
-  res.json({ username }).end();
+  res.json({ username: "NOT WORKING" }).end();
 });
 
 module.exports = Router;

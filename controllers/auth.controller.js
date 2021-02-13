@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const authConfig = require("../config/auth.config");
 
@@ -36,25 +35,15 @@ async function signIn(req, res) {
       if (!pwdMatch) {
         res.send("Invalid password!").status(401).end();
       } else {
-        //issue token
-        const payload = { username };
-        const token = jwt.sign(payload, authConfig.tokenSecret, {
-          expiresIn: 60 * authConfig.expirationTime,
-        });
-        return res
-          .cookie("token", token, { httpOnly: true })
-          .send("Signed in!")
-          .status(200)
-          .end();
+        //successful login
+
+        return res.send("Signed in!").status(200).end();
       }
     });
   }
 }
 
-async function signOut(req, res) {
-  //override token on client
-  res.cookie("token", "").send("Signed out!").status(200).end();
-}
+async function signOut(req, res) {}
 
 async function checkIfUsernameExists(req) {
   const usernameExists = await User.exists({ username: req.body.username });
