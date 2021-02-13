@@ -3,7 +3,7 @@ const config = require("../config/db.config");
 
 const { user, pwd, dbname } = config;
 
-const conURI = `mongodb+srv://${user}:${pwd}@app-data.ez8oa.mongodb.net/${dbname}?retryWrites=true&w=majority`;
+const conURI = `mongodb+srv://${user}:${pwd}@app-data.txuwk.mongodb.net/${dbname}?retryWrites=true&w=majority`;
 
 function connect() {
   mongoose.connect(
