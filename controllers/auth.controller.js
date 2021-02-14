@@ -1,6 +1,4 @@
 const bcrypt = require("bcrypt");
-const express = require("express");
-const session = require("express-session");
 const User = require("../models/user.model");
 const authConfig = require("../config/auth.config");
 
