@@ -27,13 +27,13 @@ async function signIn(req, res) {
   const userExists = await checkIfUsernameExists(req);
   const { username } = req.body;
   if (!userExists) {
-    res.send("User not found!").status(404).end();
+    res.send("Invalid credentials!").status(401).end();
   } else {
     User.findOne({ username }, async (err, user) => {
       //check password
       const pwdMatch = await bcrypt.compare(req.body.password, user.password);
       if (!pwdMatch) {
-        res.send("Invalid password!").status(401).end();
+        res.status(401).send("Invalid credentials!").end();
       } else {
         //successful login, add user specific data to the session
         const sessionUser = { userId: user._id, username: user.username };
