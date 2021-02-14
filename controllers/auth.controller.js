@@ -52,8 +52,16 @@ async function signOut(req, res) {
     req.session.destroy((err) => {
       if (err) console.log(err);
     });
+    res.clearCookie(authConfig.SESS_NAME);
   }
   res.end();
+}
+
+async function getSession(req, res) {
+  console.log(req.session);
+  if (req.session) {
+    res.send(req.session.user).end();
+  }
 }
 
 async function checkIfUsernameExists(req) {
@@ -66,4 +74,4 @@ async function checkIfEmailExists(req) {
   return emailExists;
 }
 
-module.exports = { signUp, signIn, signOut };
+module.exports = { signUp, signIn, signOut, getSession };

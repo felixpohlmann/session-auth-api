@@ -18,8 +18,8 @@ router.delete("/signout", (req, res) => {
   authController.signOut(req, res);
 });
 
-router.get("/checkauth", checkAuth, (req, res) => {
-  res.json({ auth: true }).status(200).end();
+router.get("/", (req, res) => {
+  authController.getSession(req, res);
 });
 
 module.exports = router;
