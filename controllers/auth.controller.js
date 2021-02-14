@@ -58,10 +58,8 @@ async function signOut(req, res) {
 }
 
 async function getSession(req, res) {
-  console.log(req.session);
-  if (req.session) {
-    res.send(req.session.user).end();
-  }
+  const { user } = req.session;
+  res.send(user);
 }
 
 async function checkIfUsernameExists(req) {

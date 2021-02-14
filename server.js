@@ -47,9 +47,6 @@ app.use(
 const authRouter = require("./routes/auth.router");
 app.use("/api/auth", authRouter);
 
-const userRouter = require("./routes/user.router");
-app.use("/api/user", userRouter);
-
 /**
  * DB-Initialization
  */
