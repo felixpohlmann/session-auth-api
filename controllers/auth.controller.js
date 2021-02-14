@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const express = require("express");
+const session = require("express-session");
 const User = require("../models/user.model");
 const authConfig = require("../config/auth.config");
 
@@ -39,13 +41,20 @@ async function signIn(req, res) {
         const sessionUser = { userId: user._id, username: user.username };
         req.session.user = sessionUser;
         console.log(req.session);
-        return res.send("Signed in!").status(200).end();
+        return res.send(sessionUser).status(200).end();
       }
     });
   }
 }
 
-async function signOut(req, res) {}
+async function signOut(req, res) {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) console.log(err);
+    });
+  }
+  res.end();
+}
 
 async function checkIfUsernameExists(req) {
   const usernameExists = await User.exists({ username: req.body.username });

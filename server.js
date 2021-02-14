@@ -25,13 +25,16 @@ app.use(
     secret: SESS_SECRET,
     saveUninitialized: false,
     resave: false,
+    //define the external storage for sessions
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
       collection: "session",
       ttl: parseInt(SESS_LIFETIME) / 1000,
     }),
+    //define cookie parameters
     cookie: {
       sameSite: true,
+      //https transfer
       secure: false,
       maxAge: parseInt(SESS_LIFETIME),
     },
